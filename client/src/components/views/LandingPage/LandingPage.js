@@ -4,23 +4,24 @@ import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config';
 import MainImage from './Sections/MainImage';
 import axios from 'axios';
 import GridCards from '../commons/GridCards';
+import GridCardOne from './GridCardOne.js';
 import { Row } from 'antd';
 
 function LandingPage() {
   const [Movies, setMovies] = useState([]);
   const [MainMovieImage, setMainMovieImage] = useState(null);
-  const [CurrentPage, setCurrentPage] = useState(0);
+  const [CurrentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=1`;
+    const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage}`;
     fetchMovies(endpoint);
-  }, []);
+  }, [CurrentPage]);
 
   const fetchMovies = (endpoint) => {
     fetch(endpoint)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response);
+        console.log(response, '리스펀스');
         setMovies([...Movies, ...response.results]);
         setMainMovieImage(response.results[0]);
         setCurrentPage(response.page);
@@ -28,10 +29,14 @@ function LandingPage() {
   };
 
   const loadMoreItems = () => {
-    const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${
-      CurrentPage + 1
-    }`;
-    fetchMovies(endpoint);
+    // const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${
+    //   CurrentPage + 1
+    // }`;
+    // fetchMovies(endpoint);
+
+    // 리팩토링 => 버튼 클릭시 pagenum ++; 하고 이걸 반영시키고 싶으신듯.
+    setCurrentPage(CurrentPage + 1);
+    console.log(CurrentPage, '페이지 넘')
   };
 
   return (
@@ -51,7 +56,7 @@ function LandingPage() {
 
         {/* Movie Grid Cards */}
 
-        <Row gutter={[16, 16]}>
+        {/* <Row gutter={[16, 16]}>
           {Movies &&
             Movies.map((movie, index) => (
               <React.Fragment key={index}>
@@ -67,6 +72,9 @@ function LandingPage() {
                 />
               </React.Fragment>
             ))}
+        </Row> */}
+        <Row>
+          {Movies && <GridCardOne landingPage posts={Movies} />}
         </Row>
       </div>
 
