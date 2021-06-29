@@ -4,6 +4,7 @@ import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../Config';
 import MainImage from './Sections/MainImage';
 import axios from 'axios';
 import GridCards from '../commons/GridCards';
+import Counter from './Counter.js'
 import GridCardOne from './GridCardOne.js';
 import { Row } from 'antd';
 
@@ -19,7 +20,7 @@ function LandingPage() {
   // }, [CurrentPage]);
 
   useEffect(() => {
-    const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage}`;
+    const endpoint = `${API_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage.current}`;
     fetchMovies(endpoint);
   }, []);
 
@@ -28,7 +29,7 @@ function LandingPage() {
     fetch(endpoint)
       .then((response) => response.json())
       .then((response) => {
-        console.log(response, '리스펀스');
+        console.log(response, 'fetch response');
         setMovies([...Movies, ...response.results]);
         setMainMovieImage(response.results[0]);
         //setCurrentPage(response.page);
@@ -93,15 +94,17 @@ function LandingPage() {
 
 
   return (
+    
     <div style={{ width: '100%', margin: '0' }}>
+      <Counter />  
       {/* Main Image */}
-      {MainMovieImage && (
+      {MainMovieImage &&  
         <MainImage
           image={`${IMAGE_BASE_URL}w1280${MainMovieImage.backdrop_path}`}
           title={MainMovieImage.original_title}
           text={MainMovieImage.overview}
         />
-      )}
+      }
 
       <div style={{ width: '85%', margin: '1rem auto' }}>
         <h2>Movies by latest</h2>
@@ -128,8 +131,9 @@ function LandingPage() {
         </Row> fixed 210629 */}
 
         <Row>
-          {Movies && 
+          {Movies && MainMovieImage &&
             <>
+              
               <GridCardOne 
                 landingPage 
                 posts={Movies} 

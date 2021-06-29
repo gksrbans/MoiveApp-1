@@ -37,11 +37,13 @@ function MovieDetail(props) {
   return (
     <div>
       {/* Header */}
-      <MainImage
+      {Movie.backdrop_path &&
+        <MainImage
         image={`${IMAGE_BASE_URL}w1280${Movie.backdrop_path}`}
         title={Movie.original_title}
         text={Movie.overview}
-      />
+        />
+      }
 
       {/* Body */}
 
@@ -61,6 +63,7 @@ function MovieDetail(props) {
           {Casts &&
             Casts.map((cast, index) => (
               <React.Fragment key={index}>
+                {cast.profile_path && 
                 <GridCards
                   landingPage
                   image={
@@ -70,6 +73,7 @@ function MovieDetail(props) {
                   }
                   characterName={cast.name}
                 />
+                }
               </React.Fragment>
             ))}
         </Row>

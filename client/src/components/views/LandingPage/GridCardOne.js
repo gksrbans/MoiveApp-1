@@ -15,7 +15,7 @@ const GridCardOne = ({ posts, landingPage, characterName }) => {
                         <img
                         style={{ width: '100%', height: '320px' }}
                         src={`${IMAGE_BASE_URL}w1280${poster_path}`}
-                        alt={movieName}
+                        alt={ movieName }
                         />
                     </a>
                     </div>
