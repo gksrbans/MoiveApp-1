@@ -2,6 +2,7 @@ import React from 'react';
 import { Col } from 'antd';
 
 function GridCards(props) {
+  console.log(props, props.landingPage, "GridCard임")
   if (props.landingPage) {
     return (
       <Col lg={6} md={8} xs={24}>
