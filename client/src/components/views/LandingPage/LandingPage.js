@@ -51,6 +51,7 @@ function LandingPage() {
     ////////////////////////////////////////    
     const useOnScreen = (options) => {
       const lastPostElementRef = useRef();
+      console.log(lastPostElementRef, 'gggg')
   
       //const [visible, setVisible] = useState(false);
   

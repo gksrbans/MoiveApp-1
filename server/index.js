@@ -23,6 +23,7 @@ import cookieParser from 'cookie-parser';
 // Routes
 import user from './routes/users.js';
 import favorite from './routes/favorite.js';
+import like from './routes/like.js';
 
 const app = express();
 
@@ -52,6 +53,7 @@ app.use(cookieParser());
 
 app.use('/api/users', user);
 app.use('/api/favorite', favorite);
+app.use('/api/like', like);
 
 //use this to show the image you have in node js server to client (react js)
 //https://stackoverflow.com/questions/48914987/send-image-path-from-node-js-express-server-to-react-client
