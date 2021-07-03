@@ -3,7 +3,9 @@ import React, { useEffect, useState } from 'react';
 import { API_URL, API_KEY, IMAGE_BASE_URL, IMAGE_SIZE } from '../../Config';
 import GridCards from '../commons/GridCards';
 import MainImage from '../LandingPage/Sections/MainImage';
+import Favorite from './Sections/Favorite';
 import MovieInfo from './Sections/MovieInfo';
+import LikeDislikes from './Sections/LikeDislikes';
 
 function MovieDetail(props) {
   let movieId = props.match.params.movieId;
@@ -46,11 +48,20 @@ function MovieDetail(props) {
       }
 
       {/* Body */}
+      <div style={{ width: '85%', margin: '1rem auto' }}>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
+          </div>
 
       {/* Movie Info */}
       <MovieInfo movie={Movie} />
 
       <br />
+
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <LikeDislikes video videoId={movieId} userId={localStorage.getItem('userId')} />
+      </div>
+      
       {/* Actors Grid*/}
 
       <div
@@ -80,7 +91,10 @@ function MovieDetail(props) {
       )}
       <br />
 
+
+
       {/* Comments */}
+      </div>
     </div>
   );
 }
