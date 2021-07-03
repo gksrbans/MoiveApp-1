@@ -1,18 +1,4 @@
-Hello, My Friends  
-Thank you for having interest in this repository ! 
+# React로 만든 Movie-App
 
-To use this application, 
-
-1. make dev.js file inside config folder 
-2. put mongoDB info into dev.js file 
-3. Type  " npm install " inside the root directory  ( Download Server Dependencies ) 
-4. Type " npm install " inside the client directory ( Download Front-end Dependencies )
-
-
-If you have problem, feel free to ask me ^^ 
-
-You can watch the tutorial for this app.
-
-https://www.youtube.com/channel/UCFyXA9x8lpL3EYWeYhj4C4Q?view_as=subscriber
-
-
+내용: 리액트 스터디원들과 함께 진행한 프로젝트
+project url: https://kyumoon.com/post/60d2975913d67604dae8f408s
